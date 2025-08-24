@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from 'react-icons/fa6';
 import { BsPersonCheck } from 'react-icons/bs';
+import { downloadCVFromServer } from '../services/apiServices';
 
 const IconButton = ({childern, link})=>{
   return (
@@ -70,7 +71,7 @@ const HeroSection = ({scrollToSection}) => {
             children={<IoCloudDownloadSharp className='text-xl' /> } 
             title={"Get My CV"} 
             background={"bg-gradient-to-br from-green-600 to-green-300"}
-            onClick={()=>console.log("CV Downloaded...")}
+            onClick={()=>downloadCVFromServer()}
           />
           <Button 
             children={<BsPersonCheck className='text-2xl' />} 

@@ -8,6 +8,10 @@ const getApiLink = (endpoint)=>{
 
 // Services for all user
 
+export const downloadCVFromServer = ()=>{
+   window.open(getApiLink("download-cv"), "_blank");
+}
+
 export const getProjects = async ()=>{
     const response = await axios.get(getApiLink("project"));
     return response.data.data;
@@ -149,4 +153,17 @@ export const deleteExperienceById = async (id)=>{
             "Authorization" : `Bearer ${token}`
         }
     });
+}
+
+export const uploadFileInServer = async (file)=>{
+    const token = localStorage.getItem("protfoliotoken");
+    const formData = new FormData();
+    formData.append("cv", file);
+    const response = await axios.post(getApiLink("upload-cv"), formData, {
+        headers : {
+            "Authorization" : `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+        }
+    });
+    return response.data;
 }

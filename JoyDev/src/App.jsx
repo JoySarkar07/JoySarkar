@@ -6,6 +6,7 @@ import ProjectPage from './pages/ProjectPage';
 import AdminPage from './pages/AdminPage';
 import LoginPage from './pages/LoginPage';
 import ReviewPage from './pages/ReviewPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
         <Route path='/review' element={<ReviewPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/admin' element={<ProtectedRoute element={<AdminPage />} />} />
+        <Route path='/*' element={<NotFoundPage />} />
       </Routes>
     </div>
   )

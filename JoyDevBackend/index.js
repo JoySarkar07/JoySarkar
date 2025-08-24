@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const path = require("path");
+const fs = require("fs");
 const connection = require("./database/connection");
 const projectRouter = require("./v1/routes/projectRoute");
 const reviewRoute = require("./v1/routes/reviewRoute");
@@ -9,6 +11,7 @@ const matrixRouter = require("./v1/routes/matrixRouter");
 const skillsRouter = require("./v1/routes/skillRoute");
 const emailRouter = require("./v1/routes/emailRouter");
 const userRouter = require("./v1/routes/userRouter");
+const resumeRouter = require("./v1/routes/resumeRouter");
 
 
 const app = express()
@@ -17,8 +20,16 @@ const port = 3000
 app.use(express.json());
 app.use(cors({origin: process.env.ORIGIN}));
 
+const uploadDir = path.join(__dirname, "uploads");
+
+// If uploads folder does not exist, create it
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
+
 const v1Router = express.Router();
 
+v1Router.use("/", resumeRouter);
 v1Router.use("/user", userRouter);
 v1Router.use("/email", emailRouter);
 v1Router.use("/project", projectRouter);

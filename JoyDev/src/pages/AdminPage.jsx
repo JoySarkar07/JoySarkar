@@ -3,6 +3,7 @@ import { AppContext } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import { MdDelete, MdEdit, MdLocationOn, MdStar, MdStarBorder, MdStarHalf } from 'react-icons/md';
 import { addProject, updateProject, deleteProjectById, addSkill, deleteSkillById, updateMatrixById, deleteRewiewById, updateReview, addExperience, updateExperience, deleteExperienceById } from '../services/apiServices';
+import FileUpload from '../components/FileUpload';
 
 const Chip = ({content, onDelete, classes=""})=>{
   return (
@@ -480,6 +481,7 @@ const AdminPage = () => {
 
 
   return (
+    <>
     <div className='h-screen flex'>
       {
         message && <p className='absolute bg-black p-3 top-1 left-1 rounded-2xl'>{message}</p>
@@ -626,6 +628,8 @@ const AdminPage = () => {
         </div>
       </div>
     </div>
+    <FileUpload setMessage={setMessage}/>
+    </>
   )
 }
 
