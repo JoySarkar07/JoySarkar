@@ -1,0 +1,22 @@
+{
+  "name": "joydevbackend",
+  "version": "1.0.0",
+  "description": "This is an api for protfolio.",
+  "license": "ISC",
+  "author": "JoySarkar",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.17.1",
+    "nodemailer": "^7.0.5"
+  }
+}

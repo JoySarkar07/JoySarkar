@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+    background-color: black;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    --background: #005;
+    --primary: #88D5BF;
+    --secondary: #5D6BF8;
+    --third: #e27fcb;
+}
+
+/* For WebKit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 6px; /* thin width */
+  height: 6px; /* thin height for horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* or #f0f0f0 for light gray track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a0a0a0; /* gray handle */
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #888; /* darker gray on hover */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #a0a0a0 transparent;
+}
+
+.gradient-border-background {
+  border: 2px solid transparent;
+  border-radius: 12px; /* Rounded corners */
+  background:
+    linear-gradient(rgb(15, 15, 15), rgb(15, 15, 15), rgb(11, 50, 1)) padding-box, /* Inner background */
+    linear-gradient(270deg, rgb(13, 236, 13), rgb(21, 98, 2), rgb(17, 79, 1), rgb(29, 62, 2), rgb(13, 236, 13)) border-box; /* Gradient border */
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  background-size: 300% 300%; /* Bigger size for smooth animation */
+  animation: borderAnimation 5s linear infinite;
+}
+
+@keyframes borderAnimation {
+  0% {
+    background-position: 0% 50%, 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%, 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%, 0% 50%;
+  }
+}
+
+
+.container-item {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.shape-border-animation {
+ 	background: linear-gradient(45deg, var(--primary) 0%, var(--secondary) 100%);
+  animation: morph 8s ease-in-out infinite;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  height: 400px;
+  transition: all 1s ease-in-out;
+  width: 400px;
+  z-index: 5;
+}
+
+@keyframes morph {
+  0% {
+			border-radius:  60% 40% 30% 70% / 60% 30% 70% 40%;
+			background: linear-gradient(45deg, var(--primary) 0%, var(--secondary) 100%);
+	} 
+	
+	50% {
+			border-radius:  30% 60% 70% 40% / 50% 60% 30% 60%;
+			background: linear-gradient(45deg, var(--third) 0%, var(--secondary) 100%);
+	}
+  
+	100% {
+		border-radius:  60% 40% 30% 70% / 60% 30% 70% 40%;
+		background: linear-gradient(45deg, var(--primary) 0%, var(--secondary) 100%);
+	} 
+}
+
+
