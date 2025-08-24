@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const getApiLink = (endpoint)=>{
-    const ENV = false;
+    const ENV = VITE_ENV;
     if(ENV) return "https://joysarkar.onrender.com/api/v1/"+endpoint;
     return `http://localhost:3000/api/v1/${endpoint}`;
 }
