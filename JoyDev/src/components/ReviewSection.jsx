@@ -26,7 +26,7 @@ const TestimonialCard = ({ data, isCenter }) => {
         <p className="w-full text-sm text-gray-200 text-end">{getFormattedDate(data.createdAt)}</p>
       </div>
       <p className="font-semibold text-xl">{data.name}</p>
-      <p className="text-gray-100 text-center px-4">{data.review}</p>
+      <p className="text-gray-100 text-center px-4 max-h-30 overflow-y-auto">{data.review}</p>
       <div className="flex-1" />
       <p className="flex gap-1 mb-3">
         {

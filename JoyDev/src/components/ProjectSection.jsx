@@ -6,12 +6,18 @@ import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 
 const getRandomProjects = (projects)=>{
-  // const visibleProject = projects.filter(project=>{
-  //   return project.liveLink !== null;
-  // })
-  // const shuffled = [...visibleProject].sort(() => 0.5 - Math.random());
-  // return shuffled.slice(0, 3);
-  return projects;
+  let visibleProject = projects.filter(project=>{
+    return project.liveLink !== "";
+  })
+  if(visibleProject.length<3){
+    let nonLiveProjects = projects.filter(project=>{
+      return project.liveLink === "";
+    })
+    nonLiveProjects = [...nonLiveProjects].sort(() => 0.5 - Math.random()).slice(0,(3-visibleProject.length));
+    visibleProject = visibleProject.concat(nonLiveProjects);
+  }
+  const shuffled = [...visibleProject].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, 3);
 }
 
 const ProjectSection = () => {

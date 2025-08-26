@@ -57,6 +57,7 @@ export const AppContext = createContext(null);
 export const AppContextProvider = ({
     children
 })=>{
+    const [loading, setLoading] = useState(true);
     const [experiences, setExperiences] = useState([]);
     const [skills, setSkills] = useState([]);
     const [projects, setProjects] = useState([]);
@@ -65,6 +66,7 @@ export const AppContextProvider = ({
 
     useEffect(() => {
       async function fetchAllData(){
+        setLoading(true);
         try{
           const projectsData = await getProjects();
           const experienceData = await getExperiences();
@@ -86,6 +88,8 @@ export const AppContextProvider = ({
     
 
     const contextValue = {
+      loading,
+      setLoading,
       experiences,
       skills,
       educationDetails,
