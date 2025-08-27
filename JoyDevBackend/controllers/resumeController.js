@@ -1,18 +1,32 @@
-const path = require("path");
-const fs = require("fs");
+const resumeServices = require("../services/resumeServices");
 
-const uploadCV = (req, res) => {
-  res.json({ message: "CV uploaded successfully!" });
+const uploadCV = async (req, res) => {
+  try {
+    const resumeData = {
+      filename: req.file.originalname,
+      contentType: req.file.mimetype,
+      data: req.file.buffer,
+    }
+    await resumeServices.uploadResume(resumeData);
+
+    res.status(200).json({ message: "CV uploaded successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error uploading CV" });
+  }
 }
 
-const downloadCV = (req, res) => {
-  let filePath = path.join(__dirname, "uploads", "mycv.pdf");
-  filePath = filePath.replace("\\controllers", "") // adjust if DOCX
-  console.log(filePath);
-  if (fs.existsSync(filePath)) {
-    res.download(filePath, "JoySarkar-CV.pdf"); // this will force download
-  } else {
-    res.status(404).json({ message: "CV not found" });
+const downloadCV = async (req, res) => {
+  try{
+    const cv = await resumeServices.downloadResume();
+    res.set({
+      "Content-Type": cv.contentType,
+      "Content-Disposition": `attachment; filename="JoySarkar.pdf"`,
+    });
+  
+    res.send(cv.data);
+  }catch(e){
+    res.send("some error occure : "+e.message);
   }
 }
 

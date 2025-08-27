@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaEdit } from 'react-icons/fa';
 import { addReview, updateReview } from '../services/apiServices';
@@ -46,7 +46,13 @@ const ReviewPage = () => {
         }, 3000);
         return;
     }
-    if (!formData.name || !formData.review) return;
+    if (!formData.name || !formData.review){
+      setMessage("All fields are requred");
+        setTimeout(() => {
+            setMessage("");
+        }, 3000);
+      return;
+    } 
     
     setIsSubmitting(true);
 
@@ -83,7 +89,7 @@ const ReviewPage = () => {
   };
 
   return (
-    <div className="h-screen bg-gradient-to-br from-slate-900 to-blue-900 text-white py-12 px-4">
+    <div className="h-fit min-h-screen bg-gradient-to-br from-slate-900 to-blue-900 text-white py-12 px-4">
         {
             message && <motion.p 
                 initial={{x:-100, opacity:0}}
