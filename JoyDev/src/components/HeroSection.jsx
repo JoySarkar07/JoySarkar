@@ -45,7 +45,7 @@ const HeroSection = ({scrollToSection}) => {
           className='w-[100vw] h-full scale-300 md:scale-150'
         />
       </div>
-      <div className='ml-10 w-[2px] bg-gradient-to-b from-green-300 to-green-950 h-[70%] mt-10 relative'>
+      <div className='ml-5 sm:ml-10 w-[2px] bg-gradient-to-b from-green-300 to-green-950 h-[70%] mt-10 relative'>
         <div className='h-5 w-5 absolute bg-green-500 rounded-4xl -top-0.5 -left-2.5' />
       </div>
       <motion.div 
@@ -81,7 +81,7 @@ const HeroSection = ({scrollToSection}) => {
           />
         </div>
       </motion.div>
-        <div className='h-[50vh] z-20 absolute p-2 top-25 right-5 flex flex-col gap-5 items-center justify-center'>
+        <div className='h-[50vh] z-20 absolute p-2 top-25 right-1 sm:right-5 flex flex-col gap-5 items-center justify-center'>
           <IconButton childern={<FaGithub className='text-3xl'/>} link={"https://github.com/JoySarkar07"} />
           <IconButton childern={<FaLinkedin className='text-3xl text-blue-500'/>} link={"https://www.linkedin.com/in/dev-joysarkar"} />
           <IconButton childern={<FaXTwitter className='text-3xl text-gray-500'/>} link={"https://x.com/sarkarJoyDev07"} />

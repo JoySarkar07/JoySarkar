@@ -9,7 +9,7 @@ const Educard = ({org, ind})=>{
     <motion.div 
       initial={{x:-100, opacity:0}}
       whileInView={{x:(ind), opacity:1, transition:{delay:(ind+1), duration:1}}}
-      className="w-[300px] sm:w-[450px] h-[75vh] sm:h-[70vh] rounded-3xl overflow-hidden"
+      className="w-[300px] sm:w-[450px] max-h-[300px] min-h-[550px] h-[75vh] sm:h-[70vh] rounded-3xl overflow-hidden"
     >
       <div className="rounded-3xl overflow-hidden h-[250px]">
         <img src={org.img} alt="image" className="object-cover w-full"/>

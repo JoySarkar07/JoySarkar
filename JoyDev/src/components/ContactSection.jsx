@@ -144,15 +144,15 @@ const ContactForm = () => {
 
 const ContactSection = () => {
   return (
-    <div className="flex">
-      <div className="flex-1/2">
+    <div className="flex w-full justify-center items-center">
+      <div className="sm:flex-1/2 w-full">
         <ContactForm />
       </div>
-      <div className="flex-1/2 overflow-hidden rounded-3xl hidden md:flex justify-center items-center">
+      <div className="flex-1/2 overflow-hidden rounded-3xl hidden md:flex justify-center items-center p-20">
         <img 
           src={contactSVG} 
           alt="contactSVG" 
-          className="h-[70%] rounded-4xl opacity-70"
+          className="h-[50%] rounded-4xl opacity-70"
         />
       </div>
     </div>

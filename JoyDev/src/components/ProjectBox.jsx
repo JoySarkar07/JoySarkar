@@ -11,7 +11,7 @@ const ProjectBox = ({
   return (
     <TiltComponent>
         <motion.div 
-            className="gradient-border-background m-2 p-2 cursor-pointer rounded-2xl h-[55vh] sm:h-[50vh] w-[300px] overflow-hidden shadow-xl/30 "
+            className="gradient-border-background m-2 p-2 cursor-pointer rounded-2xl max-h-[400px] h-[55vh] sm:h-[50vh] w-[300px] overflow-hidden shadow-xl/30 "
             initial={{x:-100, opacity:0}}
             whileInView={{x:0, opacity:1}}
             transition={{delay:(ind+0.05)}}

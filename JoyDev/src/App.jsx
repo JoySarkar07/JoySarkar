@@ -15,6 +15,7 @@ const App = () => {
   const experience = useRef(null);
   const skills = useRef(null);
   const contact = useRef(null);
+  const sevices = useRef(null);
 
   const scrollToSection = (id) => {
     let ref = null;
@@ -26,6 +27,8 @@ const App = () => {
       case 'skills': ref = skills;
         break;
       case 'contact': ref = contact;
+        break;
+      case 'sevices': ref = sevices;
         break;
       default: ref = hero;
         break;
@@ -43,7 +46,7 @@ const App = () => {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<><Navbar scrollToSection={scrollToSection}/><HomePage hero={hero} project={project} experience={experience} skills={skills}  contact={contact} scrollToSection={scrollToSection}/></>}/>
+        <Route path='/' element={<><Navbar scrollToSection={scrollToSection}/><HomePage hero={hero} project={project} experience={experience} skills={skills}  contact={contact} sevices={sevices} scrollToSection={scrollToSection}/></>}/>
         <Route path='/projects' element={<ProjectPage />} />
         <Route path='/review' element={<ReviewPage />} />
         <Route path='/login' element={<LoginPage />} />

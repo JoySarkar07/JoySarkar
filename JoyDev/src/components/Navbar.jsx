@@ -13,6 +13,7 @@ const Navbar = ({
   const navLinks = [
     { id: 'home', name: 'Home' },
     { id: 'projects', name: 'Projects' },
+    { id: 'sevices', name: 'Services'},
     { id: 'experience', name: 'Experience' },
     { id: 'skills', name: 'Skills' },
     { id: 'contact', name: 'Contact' },

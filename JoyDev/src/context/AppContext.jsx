@@ -52,6 +52,33 @@ const defaultMatrix = [
   }
 ]
 
+const services = [
+    {
+      title: "Full Stack Website Development",
+      description: "End-to-end development of responsive, modern websites with both frontend and backend functionality. I create seamless user experiences with robust architecture.",
+      icon: "💻",
+      features: ["Responsive Design", "Database Integration", "User Authentication", "Deployment & Hosting"]
+    },
+    {
+      title: "Redesign Websites",
+      description: "Transform outdated websites into modern, user-friendly experiences that convert visitors into customers.",
+      icon: "🎨",
+      features: ["UI/UX Improvement", "Performance Optimization", "Content Restructuring", "Modern Design Principles"]
+    },
+    {
+      title: "Software Development",
+      description: "Custom software solutions tailored to your business needs, from desktop applications to complex business systems and tools.",
+      icon: "⚙️",
+      features: ["Custom Solutions", "Cross-Platform Apps", "Maintenance & Support", "Scalable Architecture"]
+    },
+    {
+      title: "API Development",
+      description: "Design and development of robust RESTful APIs endpoints that enable seamless integration between your systems and third-party services.",
+      icon: "🔌",
+      features: ["REST API", "Third-party Integrations", "Documentation", "Security Implementation"]
+    }
+  ];
+
 export const AppContext = createContext(null);
 
 export const AppContextProvider = ({
@@ -100,7 +127,8 @@ export const AppContextProvider = ({
       setExperiences,
       setSkills,
       setMatrixes,
-      setTestimonials
+      setTestimonials,
+      services
     }
 
     return (<AppContext.Provider value={contextValue}>

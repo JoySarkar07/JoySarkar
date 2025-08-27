@@ -9,6 +9,7 @@ import ContactSection from '../components/ContactSection'
 import { useContext } from 'react'
 import { AppContext } from '../context/AppContext'
 import LoadingPage from './LoadingPage'
+import ServicesSection from '../components/ServicesSection'
 
 
 const HomePage = ({
@@ -17,6 +18,7 @@ const HomePage = ({
   experience, 
   skills, 
   contact,
+  sevices,
   scrollToSection
 }) => {
   const { loading, setLoading } = useContext(AppContext);
@@ -47,8 +49,12 @@ const HomePage = ({
             <SkillSection />
           </section>
           <hr className='m-2 text-green-900'/>
-          <section className='h-[80vh] overflow-y-auto'>
+          <section className='h-[85vh] overflow-y-auto'>
             <EducationSection />
+          </section>
+          <hr className='m-2 text-green-900'/>
+          <section ref={sevices}>
+            <ServicesSection />
           </section>
           <hr className='m-2 text-green-900'/>
           <section>

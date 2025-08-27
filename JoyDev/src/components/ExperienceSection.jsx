@@ -67,7 +67,7 @@ const ExperienceSection = () => {
   const { experiences } = useContext(AppContext);
   return (
     <div className="relative">
-      <h1 className="text-4xl text-green-300 mb-3 text-center">ExperienceSection</h1>
+      <h1 className="text-4xl text-green-300 mb-3 text-center">Experience</h1>
       <div>
         {
           experiences.length > 0
