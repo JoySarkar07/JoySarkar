@@ -50,6 +50,7 @@ const ReviewSection = () => {
 
   // Auto move every 3s
   useEffect(() => {
+    if(testimonials.length==0)return;
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % testimonials.length);
     }, 5000);

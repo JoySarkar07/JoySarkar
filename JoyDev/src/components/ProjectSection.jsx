@@ -45,7 +45,7 @@ const ProjectSection = () => {
               <ProjectBox key={ind} ind={ind} projectData={project} />
             )
           })
-          : <p className="h-[50vh] flex justify-center items-center text-5xl text-yellow-500">Nothing to Show</p>
+          : <p className="h-[50vh] flex justify-center items-center text-5xl text-yellow-500">Please wait some time ..... 🕔</p>
         }
       </div>
       <div className="flex justify-end">

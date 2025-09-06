@@ -41,7 +41,7 @@ const SkillSection = () => {
                 <SkillCard key={ind} skill={skillData.skill}/>
               );
             })
-            : <p className='text-3xl font-bold text-cyan-500'>No Skills to show</p>
+            : <p className='text-3xl font-bold text-cyan-500'>Please wait some time ..... 🕔</p>
           }
         </div>
         <div className='w-1/2 flex flex-wrap gap-2 justify-center items-center shape-border-animation'>

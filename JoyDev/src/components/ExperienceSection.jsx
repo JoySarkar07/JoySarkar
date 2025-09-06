@@ -78,7 +78,7 @@ const ExperienceSection = () => {
                 })
               }
             </VerticalTimeline>
-          : <p className="text-center text-4xl text-indigo-500 p-5">No Experiences</p>
+          : <p className="text-center text-4xl text-indigo-500 p-5">Please wait some time ..... 🕔</p>
         }
         
       </div>
