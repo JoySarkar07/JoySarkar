@@ -1,0 +1,32 @@
+<section id="contact" class="section contact">
+  <div class="shell contact__inner">
+    <p class="eyebrow" appReveal>05. What's next</p>
+
+    <h2 class="contact__title" appReveal [appRevealDelay]="80">Let's build something</h2>
+
+    <p class="lede contact__lede" appReveal [appRevealDelay]="160">
+      I'm currently open to new roles and interesting freelance work. Whether you
+      have a concrete brief or just want to compare notes on Angular, my inbox is
+      open.
+    </p>
+
+    <div appReveal [appRevealDelay]="240">
+      <a class="btn btn--solid contact__cta" [href]="'mailto:' + profile.email">
+        Say hello
+      </a>
+    </div>
+
+    <ul class="contact__socials" appReveal [appRevealDelay]="320">
+      @for (link of socials; track link.label) {
+        <li>
+          <a [href]="link.url" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path [attr.d]="link.icon" fill="currentColor" />
+            </svg>
+            {{ link.label }}
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

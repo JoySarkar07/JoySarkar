@@ -1,0 +1,34 @@
+<section id="about" class="section">
+  <div class="shell">
+    <div class="section-head" appReveal>
+      <span class="section-head__index">01.</span>
+      <h2>About me</h2>
+      <span class="section-head__rule" aria-hidden="true"></span>
+    </div>
+
+    <div class="about__grid">
+      <div class="about__prose">
+        @for (para of paragraphs; track $index; let i = $index) {
+          <p class="about__para" appReveal [appRevealDelay]="i * 90">{{ para }}</p>
+        }
+      </div>
+
+      <!-- Playful "profile as source" card. -->
+      <aside class="card" appReveal [appRevealDelay]="180">
+        <div class="card__chrome" aria-hidden="true">
+          <span class="dot dot--red"></span>
+          <span class="dot dot--amber"></span>
+          <span class="dot dot--green"></span>
+          <span class="card__file">profile.ts</span>
+        </div>
+        <pre class="card__code"><code><span class="k">const</span> <span class="v">dev</span> = {{ '{' }}
+  <span class="p">name</span>: <span class="s">'{{ profile.name }}'</span>,
+  <span class="p">role</span>: <span class="s">'{{ profile.role }}'</span>,
+  <span class="p">based</span>: <span class="s">'{{ profile.location }}'</span>,
+  <span class="p">focus</span>: [<span class="s">'web'</span>, <span class="s">'a11y'</span>, <span class="s">'perf'</span>],
+  <span class="p">coffee</span>: <span class="k">true</span>,
+{{ '}' }};</code></pre>
+      </aside>
+    </div>
+  </div>
+</section>

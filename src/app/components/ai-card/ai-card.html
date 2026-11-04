@@ -1,0 +1,20 @@
+<div class="head">
+  <span class="label ai-text">
+    <svg class="ai-spark" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z" />
+    </svg>
+    {{ card().label }}
+  </span>
+  <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+</div>
+
+<p class="prompt">
+  <span class="chevron" aria-hidden="true">&gt;</span>
+  {{ card().prompt }}<span class="caret" aria-hidden="true">▍</span>
+</p>
+
+<ul class="tools" aria-label="AI tools">
+  @for (tool of card().tools; track tool) {
+    <li>{{ tool }}</li>
+  }
+</ul>

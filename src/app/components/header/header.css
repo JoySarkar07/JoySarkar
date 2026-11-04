@@ -1,0 +1,225 @@
+.bar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  transition: background var(--dur-mid) var(--ease-out),
+    border-color var(--dur-mid) var(--ease-out),
+    box-shadow var(--dur-mid) var(--ease-out);
+}
+
+.bar--scrolled {
+  background: color-mix(in srgb, var(--navy-950) 78%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom-color: var(--border-subtle);
+  box-shadow: 0 8px 30px -12px rgb(0 0 0 / 0.5);
+}
+
+.bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* ---- Wordmark ---- */
+
+.mark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.1rem;
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  animation: fade-in var(--dur-slow) var(--ease-out) both;
+}
+
+.mark__bracket {
+  color: var(--copper-400);
+  transition: transform var(--dur-mid) var(--ease-spring);
+}
+
+.mark:hover .mark__bracket:first-child {
+  transform: translateX(-3px);
+}
+
+.mark:hover .mark__bracket:last-child {
+  transform: translateX(3px);
+}
+
+/* ---- Desktop nav ---- */
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 2vw, 1.75rem);
+}
+
+.nav__link {
+  position: relative;
+  display: inline-block;
+  padding: 0.4rem 0.2rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.nav__num {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--copper-400);
+  margin-right: 0.3rem;
+}
+
+/* Underline grows from the left on hover and locks in when active. */
+.nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--copper-400);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-mid) var(--ease-out);
+}
+
+.nav__link:hover {
+  color: var(--text-primary);
+}
+
+.nav__link:hover::after,
+.nav__link--active::after {
+  transform: scaleX(1);
+}
+
+.nav__link--active {
+  color: var(--text-primary);
+}
+
+/* ---- Burger ---- */
+
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+}
+
+.burger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin-inline: auto;
+  background: var(--copper-400);
+  transition: transform var(--dur-mid) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out);
+}
+
+.burger--open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.burger--open span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger--open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---- Mobile drawer ---- */
+
+.drawer {
+  position: fixed;
+  inset: var(--header-h) 0 auto 0;
+  z-index: 40;
+  padding: 2rem var(--gutter) 2.5rem;
+  background: color-mix(in srgb, var(--navy-900) 96%, transparent);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  /* Collapsed by default; clip-path animates without touching layout. */
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+  visibility: hidden;
+  transition: clip-path var(--dur-mid) var(--ease-out),
+    opacity var(--dur-mid) var(--ease-out),
+    visibility var(--dur-mid) linear;
+}
+
+.drawer--open {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.drawer__item {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity var(--dur-mid) var(--ease-out),
+    transform var(--dur-mid) var(--ease-out);
+}
+
+/* Each row lands a beat after the one above it. */
+.drawer--open .drawer__item {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(60ms * var(--i) + 80ms);
+}
+
+.drawer__link {
+  display: block;
+  padding: 0.85rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.drawer__link:hover {
+  color: var(--copper-400);
+}
+
+@media (max-width: 760px) {
+  .nav {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+}
+
+/* Drop the drawer entirely on desktop: otherwise resizing while it is open
+   leaves it stuck there with the burger hidden and no way to close it. */
+@media (min-width: 761px) {
+  .drawer {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer__item {
+    opacity: 1;
+    transform: none;
+  }
+}

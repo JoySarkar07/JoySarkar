@@ -1,0 +1,71 @@
+.contact {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Warm floor glow so the page ends on the brown accent. */
+.contact::before {
+  content: '';
+  position: absolute;
+  bottom: -40%;
+  left: 50%;
+  translate: -50% 0;
+  width: 80vw;
+  height: 60vh;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--brown-700) 28%, transparent),
+    transparent 65%
+  );
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.contact__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.15rem;
+}
+
+.contact__title {
+  font-size: clamp(2.1rem, 6vw, 3.4rem);
+  color: var(--text-primary);
+}
+
+.contact__lede {
+  text-align: center;
+}
+
+.contact__cta {
+  margin-top: 0.75rem;
+  padding: 1rem 2.25rem;
+  font-size: 1rem;
+}
+
+.contact__socials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.75rem;
+  margin-top: 1.5rem;
+}
+
+.contact__socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.contact__socials a:hover {
+  color: var(--copper-400);
+  transform: translateY(-2px);
+}

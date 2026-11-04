@@ -1,0 +1,110 @@
+.skills {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    color-mix(in srgb, var(--navy-900) 60%, transparent) 40%,
+    transparent
+  );
+}
+
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.1rem;
+}
+
+.pane {
+  padding: 1.5rem 1.35rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  background: var(--surface-card);
+  transition: transform var(--dur-mid) var(--ease-out),
+    border-color var(--dur-mid) var(--ease-out),
+    background var(--dur-mid) var(--ease-out);
+}
+
+.pane:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-accent);
+  background: color-mix(in srgb, var(--navy-800) 95%, transparent);
+}
+
+.pane__title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.1rem;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+}
+
+/* Short copper rule that stretches when the pane is hovered. */
+.pane__bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--copper-400);
+  transition: width var(--dur-mid) var(--ease-out);
+}
+
+.pane:hover .pane__bar {
+  width: 32px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.chip {
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--navy-950) 50%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  transition: color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-spring);
+}
+
+.chip:hover {
+  color: var(--sand-200);
+  border-color: var(--border-accent);
+  transform: translateY(-2px);
+}
+
+/* ---- AI tools pane ----
+   Frame, gradient text and sparkle come from the shared .ai-* classes in
+   styles.css; only the layout and chip tint live here. */
+.pane--ai {
+  grid-column: 1 / -1;
+}
+
+/* .pane:hover would otherwise repaint the border copper over the frame. */
+.pane--ai:hover {
+  border-color: transparent;
+}
+
+.pane--ai .pane__title {
+  margin-bottom: 0.4rem;
+}
+
+.pane__note {
+  margin: 0 0 1.1rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.pane--ai .chip {
+  border-color: color-mix(in srgb, var(--ai-violet-400) 40%, transparent);
+  background: color-mix(in srgb, var(--ai-violet-400) 8%, transparent);
+  color: var(--ai-lilac-300);
+}
+
+.pane--ai .chip:hover {
+  color: var(--ai-teal-300);
+  border-color: color-mix(in srgb, var(--ai-teal-300) 60%, transparent);
+}

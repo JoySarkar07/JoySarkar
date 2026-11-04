@@ -1,0 +1,97 @@
+:host {
+  display: block;
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin-inline: auto;
+  aspect-ratio: 6 / 7;
+  animation: fade-in 700ms var(--ease-out) 560ms both;
+}
+
+/* Soft copper glow behind the photo, offset down-right. A blurred fill
+   rather than an animated box-shadow, so hover only touches transform and
+   opacity. Decorative only. */
+.frame::before {
+  content: '';
+  position: absolute;
+  inset: 2%;
+  border-radius: 18px;
+  background: var(--copper-400);
+  filter: blur(28px);
+  opacity: 0.75;
+  transform: translate(22px, 26px);
+  transition: transform var(--dur-slow) var(--ease-out),
+    opacity var(--dur-slow) var(--ease-out);
+}
+
+.shot {
+  position: relative;
+  height: 100%;
+  margin: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--navy-800);
+  box-shadow: 0 26px 55px -26px rgb(0 0 0 / 0.8);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.frame:hover .shot {
+  transform: translate(-6px, -6px);
+}
+
+.frame:hover::before {
+  opacity: 0.95;
+  transform: translate(30px, 36px);
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Copper wash ties the photo into the navy/brown palette; it lightens on
+   hover so the image reads more clearly. */
+.shot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--copper-400) 55%, transparent),
+    color-mix(in srgb, var(--navy-900) 75%, transparent)
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0.9;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+.frame:hover .shot::after {
+  opacity: 0.4;
+}
+
+@media (max-width: 900px) {
+  .frame {
+    max-width: 300px;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .frame {
+    max-width: 250px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame:hover .shot {
+    transform: none;
+  }
+  .frame:hover::before {
+    transform: translate(22px, 26px);
+  }
+}

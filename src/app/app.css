@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Warm copper wash behind the whole page, anchored top-right. Purely
+   decorative, so it stays out of the accessibility tree. */
+:host::before {
+  content: '';
+  position: fixed;
+  top: -20vh;
+  right: -10vw;
+  width: 70vw;
+  height: 70vh;
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in srgb, var(--brown-700) 30%, transparent),
+    transparent 65%
+  );
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Keyboard-only bypass link; slides in when focused. */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  translate: -50% -120%;
+  z-index: 100;
+  padding: 0.7rem 1.25rem;
+  background: var(--copper-400);
+  color: var(--navy-950);
+  font-weight: 600;
+  border-radius: 0 0 8px 8px;
+  transition: translate var(--dur-mid) var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  translate: -50% 0;
+}

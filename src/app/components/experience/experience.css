@@ -1,0 +1,122 @@
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-left: 2rem;
+  list-style: none;
+  margin: 0;
+}
+
+/* The spine. */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  left: 5px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    var(--copper-400),
+    var(--brown-700) 60%,
+    transparent
+  );
+}
+
+.node {
+  position: relative;
+}
+
+.node__dot {
+  position: absolute;
+  top: 1.35rem;
+  left: -2rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--navy-950);
+  border: 2px solid var(--copper-400);
+  transition: background var(--dur-mid) var(--ease-out),
+    box-shadow var(--dur-mid) var(--ease-out),
+    scale var(--dur-mid) var(--ease-spring);
+}
+
+.node:hover .node__dot {
+  background: var(--copper-400);
+  box-shadow: 0 0 0 6px var(--glow-copper);
+  scale: 1.15;
+}
+
+.node__card {
+  padding: 1.35rem 1.5rem;
+  border: 1px solid var(--border-subtle);
+  border-left: 2px solid var(--brown-700);
+  border-radius: 0 12px 12px 0;
+  background: var(--surface-card);
+  transition: transform var(--dur-mid) var(--ease-out),
+    border-left-color var(--dur-mid) var(--ease-out),
+    border-color var(--dur-mid) var(--ease-out);
+}
+
+.node:hover .node__card {
+  transform: translateX(6px);
+  border-left-color: var(--copper-400);
+  border-color: var(--border-accent);
+}
+
+.node__period {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.node__title {
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  margin-bottom: 0.9rem;
+}
+
+.node__at {
+  color: var(--brown-500);
+}
+
+.node__company {
+  color: var(--copper-400);
+}
+
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.bullets li {
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.bullets li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--copper-400);
+}
+
+@media (max-width: 560px) {
+  .timeline {
+    padding-left: 1.5rem;
+  }
+
+  .node__dot {
+    left: -1.5rem;
+  }
+
+  .node__card {
+    padding: 1.1rem 1.15rem;
+  }
+}

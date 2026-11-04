@@ -1,1 +1,498 @@
-/* You can add global styles to this file, and also import other style files */
+/* ============================================================
+   Design tokens — the single source of truth.
+   Components must reference var(--*) and never hardcode a hex.
+   ============================================================ */
+
+:root {
+  /* Structure — navy */
+  --navy-950: #060d1a;
+  --navy-900: #0a1628;
+  --navy-800: #112240;
+  --navy-700: #1c3055;
+  --navy-600: #2a4574;
+
+  /* Accent — brown / copper */
+  --brown-800: #4a3428;
+  --brown-700: #6f4e37;
+  --brown-500: #a97155;
+  --copper-400: #c08552;
+  --tan-300: #d9a66c;
+  --sand-200: #e8c9a0;
+
+  /* Text */
+  --text-primary: #e6edf7;
+  --text-secondary: #a8b8ce;
+  --text-muted: #7d8fa9;
+
+  /* Derived surfaces */
+  --surface-card: color-mix(in srgb, var(--navy-800) 82%, transparent);
+  --border-subtle: color-mix(in srgb, var(--navy-600) 55%, transparent);
+  --border-accent: color-mix(in srgb, var(--copper-400) 38%, transparent);
+  --glow-copper: color-mix(in srgb, var(--copper-400) 22%, transparent);
+
+  /* AI accent — used ONLY by the AI tools pane in Skills, so it reads as a
+     deliberate exception to the navy/copper palette. Contrast on navy-900:
+     teal 12.3:1, violet 6.7:1, lilac 9.8:1. */
+  --ai-teal-300: #5eead4;
+  --ai-violet-400: #a78bfa;
+  --ai-lilac-300: #c4b5fd;
+
+  /* Type — system stacks. No webfont is loaded on purpose: it keeps the
+     site request-free and honest about what actually renders. */
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  --font-display: 'Segoe UI Semibold', system-ui, -apple-system, 'Helvetica Neue',
+    Arial, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas,
+    'Liberation Mono', Menlo, monospace;
+
+  /* Rhythm */
+  --page-max: 1140px;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --section-gap: clamp(5rem, 12vh, 9rem);
+  --header-h: 4.5rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 180ms;
+  --dur-mid: 380ms;
+  --dur-slow: 720ms;
+}
+
+/* ============================================================
+   Reset
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Keeps anchor targets clear of the fixed header. */
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--navy-950);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 0.35vw + 0.92rem, 1.0625rem);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 650;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 7vw, 4.75rem);
+  letter-spacing: -0.035em;
+}
+h2 {
+  font-size: clamp(1.85rem, 4vw, 2.75rem);
+}
+h3 {
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--copper-400);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+a:hover {
+  color: var(--tan-300);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+::selection {
+  background: var(--copper-400);
+  color: var(--navy-950);
+}
+
+/* Visible, on-brand focus ring for keyboard users. */
+:focus-visible {
+  outline: 2px solid var(--copper-400);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   Layout primitives
+   ============================================================ */
+
+.shell {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-gap);
+  position: relative;
+}
+
+/* Numbered section heading: "01 — About" with a trailing rule. */
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: clamp(2rem, 5vh, 3.5rem);
+}
+
+.section-head__index {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--copper-400);
+  letter-spacing: 0.08em;
+}
+
+.section-head__rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--border-accent),
+    transparent
+  );
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--copper-400);
+}
+
+.lede {
+  color: var(--text-secondary);
+  font-size: 1.075rem;
+  max-width: 60ch;
+}
+
+/* Faint blueprint grid — cheap, GPU-free, sets the "engineer" tone. */
+.grid-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      var(--border-subtle) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.35;
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 40%,
+    #000 20%,
+    transparent 75%
+  );
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 20%, transparent 75%);
+  pointer-events: none;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-accent);
+  background: transparent;
+  color: var(--copper-400);
+  transition: background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.btn:hover {
+  background: color-mix(in srgb, var(--copper-400) 12%, transparent);
+  border-color: var(--copper-400);
+  color: var(--tan-300);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--solid {
+  background: var(--copper-400);
+  color: var(--navy-950);
+  border-color: var(--copper-400);
+}
+
+.btn--solid:hover {
+  background: var(--tan-300);
+  border-color: var(--tan-300);
+  color: var(--navy-950);
+}
+
+/* ============================================================
+   Shared keyframes — kept global so components don't each pay
+   for a duplicate copy against the 8 kB per-component budget.
+   ============================================================ */
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(3%, -4%, 0) scale(1.06);
+  }
+  66% {
+    transform: translate3d(-3%, 3%, 0) scale(0.97);
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sheen {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(220%);
+  }
+}
+
+/* ============================================================
+   Scroll reveal — the [appReveal] directive only toggles
+   .is-visible; all motion is declared here.
+   ============================================================ */
+
+[appReveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+[appReveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   Reduced motion.
+   Content MUST end up visible here — a reveal that stays at
+   opacity: 0 would hide the whole site.
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  [appReveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   AI accent — shared by the Skills "AI Tools" pane and any project marked
+   `ai: true`. The one deliberate break from navy/copper.
+
+   .ai-frame: a teal-violet edge that slowly rotates. ::before is a conic
+   gradient square (wider than any card, so no corner is ever uncovered)
+   that spins on transform only; ::after repaints the card fill 1px inside
+   it, so only the edge shows. The host needs a border-radius and a 1px
+   border — the border is made transparent and the gradient shows through.
+   ========================================================================== */
+.ai-frame {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-color: transparent;
+}
+
+.ai-frame::before {
+  content: '';
+  position: absolute;
+  z-index: -2;
+  top: 50%;
+  left: 50%;
+  width: max(150%, 900px);
+  aspect-ratio: 1;
+  background: conic-gradient(
+    from 0deg,
+    var(--ai-teal-300),
+    var(--ai-violet-400),
+    transparent 40%,
+    var(--ai-teal-300) 60%,
+    var(--ai-violet-400),
+    transparent 90%
+  );
+  transform: translate(-50%, -50%);
+  animation: ai-spin 7s linear infinite;
+}
+
+.ai-frame::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 1px;
+  border-radius: inherit;
+  background:
+    radial-gradient(
+      ellipse 60% 120% at 0% 0%,
+      color-mix(in srgb, var(--ai-violet-400) 16%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 120% at 100% 100%,
+      color-mix(in srgb, var(--ai-teal-300) 12%, transparent),
+      transparent 70%
+    ),
+    var(--navy-900);
+}
+
+.ai-text {
+  background: linear-gradient(90deg, var(--ai-teal-300), var(--ai-lilac-300));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Small "✦ AI" pill. */
+.ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--ai-violet-400) 45%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ai-violet-400) 12%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--ai-lilac-300);
+}
+
+.ai-spark {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  fill: var(--ai-teal-300);
+  animation: ai-twinkle 2.6s var(--ease-out) infinite;
+}
+
+@keyframes ai-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(1turn);
+  }
+}
+
+@keyframes ai-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.8) rotate(45deg);
+  }
+}

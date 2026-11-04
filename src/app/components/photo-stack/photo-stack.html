@@ -1,0 +1,14 @@
+<!-- Not focusable: the photo is decoration, already exposed via its alt
+     text, so a tab stop here would do nothing. -->
+<div class="frame">
+  <figure class="shot">
+    <img
+      [src]="image().url"
+      [alt]="image().alt"
+      width="800"
+      height="933"
+      decoding="async"
+      fetchpriority="high"
+    />
+  </figure>
+</div>

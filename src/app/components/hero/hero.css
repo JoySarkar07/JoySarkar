@@ -1,0 +1,288 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding-block: var(--header-h) 4rem;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+/* ---- Ambient orbs ---- */
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+  animation: drift 22s var(--ease-out) infinite;
+}
+
+.orb--copper {
+  top: 8%;
+  right: -8%;
+  width: 46vw;
+  height: 46vw;
+  max-width: 560px;
+  max-height: 560px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--copper-400) 26%, transparent),
+    transparent 70%
+  );
+}
+
+.orb--navy {
+  bottom: -12%;
+  left: -10%;
+  width: 40vw;
+  height: 40vw;
+  max-width: 480px;
+  max-height: 480px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--navy-600) 45%, transparent),
+    transparent 70%
+  );
+  animation-duration: 28s;
+  animation-direction: reverse;
+}
+
+/* ---- Staggered entrance ----
+   Each block animates in on load with a hand-tuned delay. */
+
+.hero__greeting,
+.hero__name,
+.hero__role,
+.hero__tagline,
+.status,
+.hero__actions,
+.hero__socials {
+  animation: reveal-up 800ms var(--ease-out) both;
+}
+
+.hero__greeting {
+  animation-delay: 100ms;
+  margin-bottom: 1.1rem;
+}
+.hero__name {
+  animation-delay: 220ms;
+}
+.hero__role {
+  animation-delay: 320ms;
+}
+.hero__tagline {
+  animation-delay: 420ms;
+}
+.status {
+  animation-delay: 520ms;
+}
+.hero__actions {
+  animation-delay: 620ms;
+}
+.hero__socials {
+  animation-delay: 720ms;
+}
+
+.caret {
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--copper-400);
+  animation: caret-blink 1.1s steps(1) infinite;
+}
+
+.hero__name {
+  color: var(--text-primary);
+  margin-bottom: 0.15rem;
+}
+
+.hero__role {
+  font-size: clamp(1.6rem, 4.5vw, 3.1rem);
+  color: var(--text-muted);
+  margin-bottom: 1.6rem;
+}
+
+/* Copper gradient wash across the role line. */
+.hero__role-text {
+  background: linear-gradient(
+    100deg,
+    var(--sand-200),
+    var(--copper-400) 45%,
+    var(--brown-500)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__role-ai {
+  display: block;
+}
+
+.hero__tagline {
+  margin-bottom: 1.5rem;
+}
+
+/* Photo + floating AI card overlapping its bottom-left corner. */
+.hero__visual {
+  position: relative;
+}
+
+.hero__ai {
+  position: absolute;
+  left: -1.5rem;
+  bottom: -1.75rem;
+}
+
+/* ---- Availability pill ---- */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 2.25rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--navy-800) 60%, transparent);
+}
+
+.status__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--tan-300);
+  box-shadow: 0 0 0 0 var(--glow-copper);
+  animation: pulse-ring 2.4s var(--ease-out) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--copper-400) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 9px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+/* ---- Actions ---- */
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-bottom: 2.5rem;
+}
+
+/* ---- Socials ---- */
+
+.hero__socials {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hero__social a {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  transition: color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-mid) var(--ease-spring);
+}
+
+.hero__social a:hover {
+  color: var(--copper-400);
+  border-color: var(--border-accent);
+  transform: translateY(-4px);
+}
+
+/* ---- Scroll cue ---- */
+
+.scroll-cue {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 50%;
+  translate: -50% 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 52px;
+  animation: fade-in 1s var(--ease-out) 1.1s both;
+}
+
+.scroll-cue__line {
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--copper-400) 60%,
+    transparent
+  );
+  transform-origin: top;
+  animation: cue-slide 2s var(--ease-out) infinite;
+}
+
+@keyframes cue-slide {
+  0% {
+    transform: scaleY(0.3) translateY(-60%);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1) translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* Single column: copy first, photo below. The photo sizes itself —
+   those rules live in photo-stack.css. */
+@media (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__ai {
+    left: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .scroll-cue {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb,
+  .status__dot,
+  .caret,
+  .scroll-cue__line {
+    animation: none;
+  }
+}

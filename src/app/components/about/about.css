@@ -1,0 +1,128 @@
+.about__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.about__prose {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.about__para {
+  color: var(--text-secondary);
+  max-width: 62ch;
+}
+
+/* First paragraph gets a copper drop cap for editorial weight. */
+.about__para:first-child::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 3.4rem;
+  line-height: 0.82;
+  padding: 0.1rem 0.6rem 0 0;
+  color: var(--copper-400);
+}
+
+/* ---- Code card ---- */
+
+.card {
+  position: relative;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--navy-900) 85%, transparent);
+  overflow: hidden;
+  transition: transform var(--dur-mid) var(--ease-out),
+    border-color var(--dur-mid) var(--ease-out),
+    box-shadow var(--dur-mid) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-accent);
+  box-shadow: 0 24px 50px -24px rgb(0 0 0 / 0.7),
+    0 0 0 1px var(--border-accent);
+}
+
+/* A light sweep crosses the card on hover. */
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    color-mix(in srgb, var(--sand-200) 9%, transparent),
+    transparent
+  );
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.card:hover::after {
+  animation: sheen 900ms var(--ease-out);
+}
+
+.card__chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background: color-mix(in srgb, var(--navy-800) 70%, transparent);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dot--red {
+  background: #d9645a;
+}
+.dot--amber {
+  background: var(--tan-300);
+}
+.dot--green {
+  background: #6fae7f;
+}
+
+.card__file {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.card__code {
+  margin: 0;
+  padding: 1.15rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.83rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  overflow-x: auto;
+}
+
+.k {
+  color: var(--brown-500);
+}
+.v {
+  color: var(--sand-200);
+}
+.p {
+  color: var(--text-muted);
+}
+.s {
+  color: var(--copper-400);
+}
+
+@media (max-width: 860px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+}

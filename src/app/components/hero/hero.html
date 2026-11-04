@@ -1,0 +1,62 @@
+<section id="top" class="hero grid-bg">
+  <!-- Decorative ambient light; hidden from assistive tech. -->
+  <div class="orb orb--copper" aria-hidden="true"></div>
+  <div class="orb orb--navy" aria-hidden="true"></div>
+
+  <div class="shell hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow hero__greeting">
+        Hi, my name is<span class="caret" aria-hidden="true">_</span>
+      </p>
+
+      <h1 class="hero__name">{{ profile.name }}</h1>
+
+      <h2 class="hero__role">
+        <span class="hero__role-text">{{ profile.role }}</span>
+        @if (profile.aiRole) {
+          <span class="hero__role-ai ai-text">&amp; {{ profile.aiRole }}</span>
+        }
+      </h2>
+
+      <p class="lede hero__tagline">{{ profile.tagline }}</p>
+
+      @if (profile.available) {
+        <p class="status">
+          <span class="status__dot" aria-hidden="true"></span>
+          Open to new opportunities · {{ profile.location }}
+        </p>
+      }
+
+      <div class="hero__actions">
+        <a class="btn btn--solid" href="#projects">View my work</a>
+        <a class="btn" [href]="'mailto:' + profile.email">Get in touch</a>
+      </div>
+
+      <ul class="hero__socials">
+        @for (link of socials; track link.label; let i = $index) {
+          <li class="hero__social" [style.--i]="i">
+            <a
+              [href]="link.url"
+              [attr.aria-label]="link.label"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path [attr.d]="link.icon" fill="currentColor" />
+              </svg>
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="hero__visual">
+      <app-photo-stack [image]="heroImage" />
+      <app-ai-card class="hero__ai" [card]="heroAi" />
+    </div>
+  </div>
+
+  <a class="scroll-cue" href="#about" aria-label="Scroll to about section">
+    <span class="scroll-cue__line" aria-hidden="true"></span>
+  </a>
+</section>

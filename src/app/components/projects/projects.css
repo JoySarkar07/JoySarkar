@@ -1,0 +1,242 @@
+/* ---- Featured rows ---- */
+
+.featured {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: clamp(3rem, 8vh, 5rem);
+}
+
+.feat {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  padding: 1.5rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--surface-card);
+  transition: transform var(--dur-mid) var(--ease-out),
+    border-color var(--dur-mid) var(--ease-out),
+    box-shadow var(--dur-mid) var(--ease-out);
+}
+
+.feat:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-accent);
+  box-shadow: 0 28px 55px -30px rgb(0 0 0 / 0.75);
+}
+
+/* Monogram plate stands in for a screenshot until real images exist. */
+.feat__plate {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 150px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    var(--navy-800),
+    var(--brown-800) 120%
+  );
+  border: 1px solid var(--border-subtle);
+}
+
+.feat__initial {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 700;
+  color: color-mix(in srgb, var(--sand-200) 80%, transparent);
+  transition: transform var(--dur-slow) var(--ease-spring);
+}
+
+.feat:hover .feat__initial {
+  transform: scale(1.12) rotate(-4deg);
+}
+
+.feat__index {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--copper-400);
+}
+
+.feat__name {
+  margin: 0.35rem 0 0.6rem;
+  font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+  color: var(--text-primary);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.feat:hover .feat__name {
+  color: var(--copper-400);
+}
+
+.feat__blurb {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  max-width: 58ch;
+}
+
+.feat__links {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.link__arrow {
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.link:hover .link__arrow {
+  transform: translateX(4px);
+}
+
+/* ---- Stack tags ---- */
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.stack li::before {
+  content: '▹ ';
+  color: var(--brown-500);
+}
+
+.stack--mini {
+  margin-top: auto;
+  padding-top: 0.9rem;
+}
+
+/* ---- Other work ---- */
+
+.more__title {
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.more {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 1.1rem;
+}
+
+.mini {
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  background: var(--surface-card);
+  transition: transform var(--dur-mid) var(--ease-out),
+    border-color var(--dur-mid) var(--ease-out);
+}
+
+.mini:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-accent);
+}
+
+.mini__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.mini__icon {
+  color: var(--copper-400);
+}
+
+.mini__ext {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  transition: color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.mini__ext:hover {
+  color: var(--copper-400);
+  transform: translate(2px, -2px);
+}
+
+.mini__name {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.mini:hover .mini__name {
+  color: var(--copper-400);
+}
+
+.mini__blurb {
+  font-size: 0.93rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 760px) {
+  .feat {
+    grid-template-columns: 1fr;
+  }
+
+  .feat__plate {
+    min-height: 110px;
+  }
+}
+
+/* ---- AI projects (`ai: true`) ----
+   Frame, gradient text and badge are the shared .ai-* classes in
+   styles.css; these rules only retint what the card already has. */
+.feat--ai:hover,
+.mini--ai:hover {
+  border-color: transparent;
+}
+
+.feat--ai .feat__plate {
+  border-color: color-mix(in srgb, var(--ai-violet-400) 35%, transparent);
+  background: linear-gradient(
+    135deg,
+    var(--navy-800),
+    color-mix(in srgb, var(--ai-violet-400) 35%, var(--navy-900)) 120%
+  );
+}
+
+/* .feat__initial sets its own color, which beats the global .ai-text. */
+.feat--ai .feat__initial {
+  color: transparent;
+}
+
+.feat--ai .feat__index,
+.feat--ai .stack li::before {
+  color: var(--ai-teal-300);
+}
+
+.feat--ai:hover .feat__name,
+.mini--ai:hover .mini__name {
+  color: var(--ai-teal-300);
+}
+
+.feat--ai .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}

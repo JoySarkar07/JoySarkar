@@ -1,0 +1,32 @@
+<section id="experience" class="section experience">
+  <div class="shell">
+    <div class="section-head" appReveal>
+      <span class="section-head__index">04.</span>
+      <h2>Where I've worked</h2>
+      <span class="section-head__rule" aria-hidden="true"></span>
+    </div>
+
+    <ol class="timeline">
+      @for (role of roles; track role.company; let i = $index) {
+        <li class="node" appReveal [appRevealDelay]="i * 130">
+          <span class="node__dot" aria-hidden="true"></span>
+
+          <div class="node__card">
+            <p class="node__period">{{ role.period }}</p>
+            <h3 class="node__title">
+              {{ role.title }}
+              <span class="node__at">@</span>
+              <span class="node__company">{{ role.company }}</span>
+            </h3>
+
+            <ul class="bullets">
+              @for (point of role.highlights; track $index) {
+                <li>{{ point }}</li>
+              }
+            </ul>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
