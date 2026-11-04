@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const s=require\\('./node_modules/@angular/build/src/builders/unit-test/schema.json'\\); for\\(const [k,v] of Object.entries\\(s.properties\\)\\){console.log\\(k+' :: '+\\(v.type||''\\)+' :: '+String\\(v.description||''\\).split\\('\\\\n'\\)[0].slice\\(0,140\\)\\);}\")",
+      "Bash(node -e \"const l=require\\('./package-lock.json'\\); const z=Object.keys\\(l.packages||{}\\).filter\\(p=>p.includes\\('zone.js'\\)\\); console.log\\('zone.js entries:', z.length?z:'NONE'\\);\")",
+      "Bash(node -e ' *)",
+      "Bash(export NG_CLI_ANALYTICS=false)",
+      "Bash(npx ng *)"
+    ]
+  }
+}
