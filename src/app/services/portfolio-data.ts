@@ -75,7 +75,7 @@ export class PortfolioData {
     tagline:
       'I build fast, accessible web applications — and care about the details most people scroll past.',
     location: 'India',
-    email: 'joy.sarkar2@cognizant.com',
+    email: 'joyprof730@gmail.com',
     available: true,
   };
 
@@ -92,19 +92,19 @@ export class PortfolioData {
    */
   readonly heroAi: HeroAiCard = {
     label: 'AI-powered dev',
-    prompt: 'Build an agent that triages bug reports',
+    prompt: 'Engineered a Retrieval-Augmented Generation (RAG) agent to extract precise answers and insights directly from user-provided documents.',
     tools: ['Claude', 'Gemini'],
   };
 
   readonly heroImage: HeroImage = {
-    url: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&h=933&q=80',
+    url: './heroImage.jpg',
     alt: 'A laptop on a wooden desk displaying code',
   };
 
   readonly about: readonly string[] = [
-    "I'm a developer who enjoys the unglamorous half of the job: the render path, the failure mode, the state that shouldn't exist. Most of my work sits where a clean interface meets a messy domain.",
-    'Lately I have been working with Angular and its signal-based reactivity, alongside typed APIs and the sort of performance budgets that force honest decisions.',
-    'Outside of shipping features, I spend time reading other people\'s source, sharpening my tooling, and rewriting things that already worked.',
+    "I'm a full-stack developer who thrives on building complete systems, focusing on clean architecture and scalable logic across both the client and the server.",
+    "Lately, my work heavily features Angular on the frontend paired with robust backend technologies like FastAPI and Express, while deeply integrating generative AI—particularly Claude—into the core of my applications.",
+    "My distinct advantage is velocity. By combining solid engineering fundamentals with advanced prompt engineering and AI-assisted workflows, I dramatically accelerate the path from an empty repository to a shipped feature."
   ];
 
   readonly skills: readonly SkillGroup[] = [
@@ -134,11 +134,11 @@ export class PortfolioData {
 
   readonly projects: readonly Project[] = [
     {
-      name: 'Portfolio Engine',
+      name: 'Document RAG Explorer',
       blurb:
-        'This site. Zoneless Angular, signal-driven, no animation library — every transition is CSS, every reveal is one IntersectionObserver.',
-      stack: ['Angular 21', 'TypeScript', 'CSS'],
-      repo: '#',
+        'A Retrieval-Augmented Generation (RAG) platform that transforms static PDFs and text files into interactive knowledge bases. Ingests documents and delivers precise, context-aware answers to user queries using generative AI.',
+      stack: ['Angular', 'FastAPI', 'Gemini AI'],
+      repo: 'https://github.com/JoySarkar07/basicRAGApp',
       featured: true,
       ai: true
     },
@@ -172,12 +172,12 @@ export class PortfolioData {
   readonly experience: readonly Role[] = [
     {
       company: 'Cognizant',
-      title: 'Programmer analyst tranee',
+      title: 'Programmer Analyst Trainee',
       period: '5 Feb, 2026 — Present',
       highlights: [
-        'Complete trainin in Angular and express',
-        'Learning about fastapi and rag',
-        'Develop rag systems for poc',
+        'Completed intensive technical training focused on building responsive, scalable full-stack applications using Angular and Express.js.',
+        'Engineered high-performance backends using FastAPI and implemented Retrieval-Augmented Generation (RAG) pipelines for AI-driven data retrieval.',
+        'Integrated Claude and advanced AI toolchains into the development workflow, dramatically accelerating the prototyping and delivery of full-stack applications.',
       ],
     },
     {
@@ -185,8 +185,8 @@ export class PortfolioData {
       title: 'Junior Software Developer Intern',
       period: '3 Feb, 2025 — 24 May, 2025',
       highlights: [
-        'Developed a reusable UI component library using React and TypeScript for a WordPress plugin, enhancing maintainability and scalability.',
-        'Optimized React logic, reducing code complexity by 20% and improving performance.',
+        'Developed a reusable UI component library using React and TypeScript for a WordPress plugin, significantly enhancing maintainability and scalability.',
+        'Refactored and optimized React component logic, reducing code complexity by 20% and improving overall application rendering performance.',
       ],
     },
   ];
